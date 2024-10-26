@@ -1,0 +1,45 @@
+﻿<Window x:Class="AcademyofITSpecialists.View.Windows.AuthorizationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AcademyofITSpecialists.View.Windows"
+        mc:Ignorable="d"
+        Title="Авторизация" 
+        Foreground="White"
+        Background="Black"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="400" />
+        </Grid.ColumnDefinitions>
+        <Image Source="/Resources/Icon/icon.png" Grid.ColumnSpan="2" Width="120" VerticalAlignment="Center"/>
+        <TextBox Name="LoginTb" Grid.Row="2" Grid.Column="1" />
+        <TextBlock Grid.Row="2" Text="Логин:" FontSize="20" IsHitTestVisible="False" />
+        <TextBlock Grid.Row="4" Text="Пароль:" FontSize="20" IsHitTestVisible="False"/>
+        <PasswordBox Name="PasswordPb" Grid.Row="4" Grid.Column="1" PasswordChar="*"/>
+        <CheckBox Name="RememberMeCb" Grid.Column="1" Grid.Row="6" Content="Запомнить меня" Foreground="White" Click="RememberMeCb_Click"/>
+        <Button Name="EntranceBtn" Grid.Row="8" Grid.ColumnSpan="2" Content="Войти" Width="300" Click="EntranceBtn_Click" />
+        <TextBlock Grid.Row="9" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <Hyperlink Name="RegistrationHl" Click="RegistrationHl_Click"  Foreground="#8581FF">
+                Зарегистрироваться
+            </Hyperlink>
+        </TextBlock>
+    </Grid>
+</Window>

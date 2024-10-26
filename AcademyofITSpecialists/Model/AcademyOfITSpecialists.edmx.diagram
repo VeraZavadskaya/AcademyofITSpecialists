@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1f5c5dd7fcbd4bf9bcdafa9c87359c46" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.ClassTime" Width="1.5" PointX="0.75" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.DayOfTheWeek" Width="1.5" PointX="0.75" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.Gender" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.Group" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.GroupStudent" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.Records" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.Schedule" Width="1.5" PointX="3" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.Student" Width="1.5" PointX="0.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.User" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.UserGS" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.UserRecords" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.UserSchedule" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <AssociationConnector Association="AcademyofITSpecialistsModel.FK_Schedule_ClassTime" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademyofITSpecialistsModel.FK_Schedule_DayOfTheWeek" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademyofITSpecialistsModel.FK_User_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademyofITSpecialistsModel.FK_GroupStudent_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademyofITSpecialistsModel.FK_Schedule_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademyofITSpecialistsModel.FK_GroupStudent_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademyofITSpecialistsModel.FK_UserGS_GroupStudent" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademyofITSpecialistsModel.FK_UserRecords_Records" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademyofITSpecialistsModel.FK_UserSchedule_Schedule" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademyofITSpecialistsModel.FK_UserGS_User" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademyofITSpecialistsModel.FK_UserRecords_User" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademyofITSpecialistsModel.FK_UserSchedule_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,51 @@
+﻿<Page x:Class="AcademyofITSpecialists.View.Pages.GroupPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AcademyofITSpecialists.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1000"
+      Foreground="White"
+      Title="Группы">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="Группы" FontSize="35" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+        <Border Grid.Row="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+            
+            <Button Name="P10Btn" Content="П-10" FontSize="30" Background="Black" Foreground="White" Margin="10" Click="P10Btn_Click"/>
+                <Button Name="P11Btn" Content="П-11" Grid.Column="1" FontSize="30" Background="Black" Foreground="White" Margin="10" Click="P11Btn_Click"/>
+                <Button Name="P12Btn" Content="П-12" Grid.Column="2" FontSize="30" Background="Black" Foreground="White" Margin="10" Click="P12Btn_Click"/>
+                <Button Name="R09Btn" Content="Р-09" Grid.Column="3" FontSize="30" Background="Black" Foreground="White" Margin="10" Click="R09Btn_Click"/>
+                <Button Name="R10Btn" Content="Р-10" Grid.Column="4" FontSize="30" Background="Black" Foreground="White" Margin="10" Click="R10Btn_Click"/>
+                <Button Name="R11Btn" Content="Р-11" Grid.Column="5" FontSize="30" Background="Black" Foreground="White" Margin="10" Click="R11Btn_Click"/>
+                
+            </Grid>
+        </Border>
+        <ListView Name="InformationOfStudentsLV" Grid.Row="3" Background="Black">
+            <ListView.View>
+                <GridView>
+                    
+                    <GridViewColumn Header="№" DisplayMemberBinding="{Binding}"/>
+                    <GridViewColumn Header="ФИО" DisplayMemberBinding="{Binding}"/>
+                    <GridViewColumn Header="Дата рождения" DisplayMemberBinding="{Binding}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Page>

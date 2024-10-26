@@ -1,0 +1,67 @@
+﻿<Window x:Class="AcademyofITSpecialists.View.Windows.RegistrationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AcademyofITSpecialists.View.Windows"
+        mc:Ignorable="d"
+         Title="Регистрация"
+        Foreground="White"
+        Background="Black"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="400" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Image Source="/Resources/Icon/icon.png" Grid.ColumnSpan="2" Width="120" VerticalAlignment="Center"/>
+        <TextBlock Text="Фамилия" Grid.Row="2"/>
+        <TextBlock Text="Имя" Grid.Row="4" />
+        <TextBlock Text="Отчество" Grid.Row="6" />
+        <TextBlock Text="Ваш пол" Grid.Row="8"/>
+        <ComboBox Name="GenderCb" Text="{Binding Genger.Name}" Grid.Row="8" Grid.Column="1" FontSize="20" />
+
+        <TextBlock Text="День рождение" Grid.Row="10"/>
+        <TextBlock Text="Email" Grid.Row="12" />
+        <TextBlock Text="Телефон" Grid.Row="14" />
+        <TextBlock Text="Пароль" Grid.Row="16"/>
+        <TextBox Name="LastNameTb" Grid.Row="2" Grid.Column="1" />
+        <TextBox Name="FirstNameTb" Grid.Row="4" Grid.Column="1" />
+        <TextBox Name="MiddleNameTb" Grid.Row="6" Grid.Column="1" />
+        <DatePicker Name="BirthdayDp" Grid.Row="10" Grid.Column="1" />
+        <TextBox Name="EmailTb" Grid.Row="12" Grid.Column="1" />
+        <TextBox Name="PhoneTb" Grid.Row="14" Grid.Column="1" />
+        <PasswordBox Name="PasswordPb" Grid.Row="16" Grid.Column="1" PasswordChar="*"/>
+        <Button Name="RegistrationBtn" Grid.Row="18" Grid.ColumnSpan="2" Content="Зарегистрироваться" Click="RegistrationBtn_Click"/>
+        <TextBlock Grid.Row="19" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <Hyperlink Name="AutorizationHl" Click="AutorizationHl_Click"  Foreground="#8581FF">
+            Войти
+        </Hyperlink>
+        </TextBlock>
+    </Grid>
+</Window>
