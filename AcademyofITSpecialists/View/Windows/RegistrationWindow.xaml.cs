@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using AcademyofITSpecialists.AppData;
 using AcademyofITSpecialists.Model;
+using Microsoft.Win32;
 
 namespace AcademyofITSpecialists.View.Windows
 {
@@ -21,6 +22,10 @@ namespace AcademyofITSpecialists.View.Windows
     /// </summary>
     public partial class RegistrationWindow : Window
     {
+        OpenFileDialog openFileDialog = new OpenFileDialog()
+        {
+            InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+        };
         public RegistrationWindow()
         {
             InitializeComponent();
@@ -41,7 +46,7 @@ namespace AcademyofITSpecialists.View.Windows
                     User newUser = new User()
                     {
                         LastName = LastNameTb.Text,
-                        FistName = FirstNameTb.Text,
+                        FirstName = FirstNameTb.Text,
                         MiddleName = MiddleNameTb.Text,
                         Birthday = BirthdayDp.SelectedDate.Value,
                         IdGender = Convert.ToInt32(GenderCb.SelectedValue),
@@ -53,6 +58,10 @@ namespace AcademyofITSpecialists.View.Windows
                     App.context.SaveChanges();
 
                     MessageBoxHelper.Information("Пользователь успешно добавлен!");
+
+                    AuthorizationWindow authorizationWindow = new AuthorizationWindow();
+                    authorizationWindow.Show();
+                    Close();
                 }
                 catch
                 {
@@ -65,7 +74,7 @@ namespace AcademyofITSpecialists.View.Windows
         {
             AuthorizationWindow authorizationWindow = new AuthorizationWindow();
             authorizationWindow.Show();
-            this.Close();
+            Close();
         }
     }
 }

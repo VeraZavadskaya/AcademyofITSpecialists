@@ -12,13 +12,18 @@ namespace AcademyofITSpecialists.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class UserSchedule
+    public partial class Subject
     {
-        public int Id { get; set; }
-        public int IdUser { get; set; }
-        public int IdSchedule { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Subject()
+        {
+            this.Schedule = new HashSet<Schedule>();
+        }
     
-        public virtual Schedule Schedule { get; set; }
-        public virtual User User { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Schedule> Schedule { get; set; }
     }
 }

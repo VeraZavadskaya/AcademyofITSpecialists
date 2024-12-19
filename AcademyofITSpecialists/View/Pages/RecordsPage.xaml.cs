@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AcademyofITSpecialists.View.Windows;
 
 namespace AcademyofITSpecialists.View.Pages
 {
@@ -24,15 +25,34 @@ namespace AcademyofITSpecialists.View.Pages
         {
             InitializeComponent();
 
+            if (App.currentUser.IdPost == 2)
+            {
+                AddRecordsBtn.IsEnabled = false;
+                AddRecordsBtn.Visibility = Visibility.Collapsed;
+            }
+
             RecordsLb.ItemsSource = App.context.Records.ToList();
         }
 
         private void AddRecordsBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            AddRecordWindow addRecordWindow = new AddRecordWindow();
+            addRecordWindow.ShowDialog();
         }
 
-        private void SearchBtn_Click(object sender, RoutedEventArgs e)
+        private void SearchTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(SearchTb.Text != string.Empty)
+            {
+                RecordsLb.ItemsSource = App.context.Records.Where(r => r.Text.ToLower().Contains(SearchTb.Text.ToLower())).ToList();
+            }
+            else
+            {
+                RecordsLb.ItemsSource = App.context.Records.ToList();
+            }
+        }
+
+        private void RecordsLb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

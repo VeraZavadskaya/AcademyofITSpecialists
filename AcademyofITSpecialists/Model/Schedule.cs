@@ -14,21 +14,17 @@ namespace AcademyofITSpecialists.Model
     
     public partial class Schedule
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Schedule()
-        {
-            this.UserSchedule = new HashSet<UserSchedule>();
-        }
-    
         public int Id { get; set; }
+        public int IdDayOfTheWeek { get; set; }
         public int IdTime { get; set; }
-        public int IdWeek { get; set; }
         public int IdGroup { get; set; }
+        public int IdUser { get; set; }
+        public int IdSubject { get; set; }
     
         public virtual ClassTime ClassTime { get; set; }
         public virtual DayOfTheWeek DayOfTheWeek { get; set; }
         public virtual Group Group { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserSchedule> UserSchedule { get; set; }
+        public virtual Subject Subject { get; set; }
+        public virtual User User { get; set; }
     }
 }

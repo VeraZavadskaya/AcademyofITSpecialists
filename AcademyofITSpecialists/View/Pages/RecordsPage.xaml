@@ -25,14 +25,12 @@
                 <ColumnDefinition Width="400" />
             </Grid.ColumnDefinitions>
 
-            <Button Name="AddRecordsBtn" Click="AddRecordsBtn_Click"/>
-            <Image Source="\Resources\Image\addRecords.png" Width="30" Height="30"/>
-            <TextBox Name="SearchTb" Grid.Column="1" Margin="20 10" Text="Поиск" FontSize="40"/>
-            <Button Name="SearchBtn" Content="Найти" Grid.Column="2" FontSize="30" Width="150" HorizontalAlignment="Left" Click="SearchBtn_Click" />
-            
+            <Button Name="AddRecordsBtn" Content="+" Width="70" Height="70" Click="AddRecordsBtn_Click"/>
+            <TextBlock Text="Поиск по тексту:" Grid.Column="1"  />
+            <TextBox Name="SearchTb" Grid.Column="1" Grid.ColumnSpan="2" Margin="250 0 0 0" FontSize="20" Height="50" Width="400" HorizontalAlignment="Left" TextChanged="SearchTb_TextChanged"/>
         </Grid>
 
-        <ListBox Name="RecordsLb" Grid.Row="4" Margin="10" Background="Black">
+        <ListBox Name="RecordsLb" Grid.Row="4" Margin="10" Background="Black" SelectionChanged="RecordsLb_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel/>
@@ -40,9 +38,17 @@
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderThickness="1" BorderBrush="Black">
-                        <TextBlock Text="{Binding Records}"/>
-                    </Border>
+                    <Border BorderThickness="1" BorderBrush="White" Padding="15" Width="300" Height="auto" Margin="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="5" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="{Binding Heading}" Foreground="White" FontSize="25" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding Text}" Grid.Row="2" Foreground="White" FontSize="20"/>
+                        </Grid>
+                        </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

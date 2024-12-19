@@ -7,8 +7,20 @@
         mc:Ignorable="d"
         Title="Окно добавления записи" Height="350" Width="350"
         Background="Black"
-        Foreground="White">
-    <Grid>
-        
+        Foreground="White" WindowStartupLocation="CenterScreen">
+    <Grid Margin="10 10 10 0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="Заголовок:"/>
+        <TextBox Name="HeadingTb" Grid.Row="1" Margin="10"/>
+        <TextBlock Text="Текст:" Grid.Row="2" FontSize="20"/>
+        <TextBox Name="TextTb" Grid.Row="3"/>
+        <Button Name="SaveBtn" Grid.Row="4" Content="Добавить" Width="200" Height="40" HorizontalAlignment="Right" Click="SaveBtn_Click"/>
+        <Button Name="CancelBtn" Grid.Row="4" Content="Отмена" Width="125" Height="40" HorizontalAlignment="Left" Click="CancelBtn_Click"/>
     </Grid>
 </Window>

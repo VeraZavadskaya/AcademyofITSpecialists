@@ -14,19 +14,13 @@ namespace AcademyofITSpecialists.Model
     
     public partial class Student
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Student()
-        {
-            this.GroupStudent = new HashSet<GroupStudent>();
-        }
-    
         public int Id { get; set; }
-        public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public System.DateTime Birthday { get; set; }
+        public int IdGroup { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GroupStudent> GroupStudent { get; set; }
+        public virtual Group Group { get; set; }
     }
 }

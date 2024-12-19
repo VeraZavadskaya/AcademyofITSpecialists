@@ -15,6 +15,10 @@ namespace AcademyofITSpecialists
     /// </summary>
     public partial class App : Application
     {
+        // Подключение к БД.
         public static AcademyofITSpecialistsEntities context = new AcademyofITSpecialistsEntities();
+
+        //Вошедший пользователь.
+        public static User currentUser;
     }
 }

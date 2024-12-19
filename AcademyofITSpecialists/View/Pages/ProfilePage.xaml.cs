@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AcademyofITSpecialists.AppData;
+using Microsoft.Win32;
 
 namespace AcademyofITSpecialists.View.Pages
 {
@@ -20,19 +22,28 @@ namespace AcademyofITSpecialists.View.Pages
     /// </summary>
     public partial class ProfilePage : Page
     {
+        OpenFileDialog openFileDialog = new OpenFileDialog()
+        {
+            InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
+        };
         public ProfilePage()
         {
             InitializeComponent();
 
-            DataContext = App.Current;
-
+            DataContext = App.currentUser;
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
+            if(openFileDialog.FileName != string.Empty)
+            {
+                App.currentUser.Photo = openFileDialog.FileName;
+            }
             App.context.SaveChanges();
 
-            MessageBox.Show("Изменения сохранены");
+            MessageBoxHelper.Information("Изменения сохранены!");
+
+            NavigationService.Navigate(new ProfilePage());
         }
     }
 }

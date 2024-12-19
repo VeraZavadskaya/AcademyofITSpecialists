@@ -4,20 +4,21 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище AcademyofITSpecialistsModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище AcademyofITSpecialistsModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ClassTime">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Time" Type="time" Precision="4" Nullable="false" />
+          <Property Name="Hour" Type="int" Nullable="false" />
+          <Property Name="Minutes" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DayOfTheWeek">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="5" Nullable="false" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
@@ -33,13 +34,12 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
-        <EntityType Name="GroupStudent">
+        <EntityType Name="Post">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdGroup" Type="int" Nullable="false" />
-          <Property Name="IdStudent" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="Records">
           <Key>
@@ -54,43 +54,46 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdDayOfTheWeek" Type="int" Nullable="false" />
           <Property Name="IdTime" Type="int" Nullable="false" />
-          <Property Name="IdWeek" Type="int" Nullable="false" />
           <Property Name="IdGroup" Type="int" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="IdSubject" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="MiddleName" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Birthday" Type="date" Nullable="false" />
+          <Property Name="IdGroup" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FistName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
           <Property Name="Photo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdPost" Type="int" Nullable="false" />
           <Property Name="IdGender" Type="int" Nullable="false" />
           <Property Name="Birthday" Type="date" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="NumberPhone" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UserGS">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdUser" Type="int" Nullable="false" />
-          <Property Name="IdGS" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="UserRecords">
           <Key>
@@ -100,38 +103,6 @@
           <Property Name="IdUser" Type="int" Nullable="false" />
           <Property Name="IdRecords" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="UserSchedule">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdUser" Type="int" Nullable="false" />
-          <Property Name="IdSchedule" Type="int" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_GroupStudent_Group">
-          <End Role="Group" Type="Self.Group" Multiplicity="1" />
-          <End Role="GroupStudent" Type="Self.GroupStudent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Group">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="GroupStudent">
-              <PropertyRef Name="IdGroup" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GroupStudent_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="1" />
-          <End Role="GroupStudent" Type="Self.GroupStudent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="GroupStudent">
-              <PropertyRef Name="IdStudent" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Schedule_ClassTime">
           <End Role="ClassTime" Type="Self.ClassTime" Multiplicity="1" />
           <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
@@ -144,7 +115,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Schedule_DayOfTheWeek">
+        <Association Name="FK_Schedule_DayOfTheWeek1">
           <End Role="DayOfTheWeek" Type="Self.DayOfTheWeek" Multiplicity="1" />
           <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
           <ReferentialConstraint>
@@ -152,7 +123,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Schedule">
-              <PropertyRef Name="IdWeek" />
+              <PropertyRef Name="IdDayOfTheWeek" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -168,7 +139,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_Gender">
+        <Association Name="FK_Schedule_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="IdSubject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="IdGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Gender1">
           <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
@@ -180,27 +187,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserGS_GroupStudent">
-          <End Role="GroupStudent" Type="Self.GroupStudent" Multiplicity="1" />
-          <End Role="UserGS" Type="Self.UserGS" Multiplicity="*" />
+        <Association Name="FK_User_Post1">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="GroupStudent">
+            <Principal Role="Post">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="UserGS">
-              <PropertyRef Name="IdGS" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserGS_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="UserGS" Type="Self.UserGS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserGS">
-              <PropertyRef Name="IdUser" />
+            <Dependent Role="User">
+              <PropertyRef Name="IdPost" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -224,30 +219,6 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="UserRecords">
-              <PropertyRef Name="IdUser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserSchedule_Schedule">
-          <End Role="Schedule" Type="Self.Schedule" Multiplicity="1" />
-          <End Role="UserSchedule" Type="Self.UserSchedule" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Schedule">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserSchedule">
-              <PropertyRef Name="IdSchedule" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserSchedule_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="UserSchedule" Type="Self.UserSchedule" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserSchedule">
               <PropertyRef Name="IdUser" />
             </Dependent>
           </ReferentialConstraint>
@@ -257,27 +228,18 @@
           <EntitySet Name="DayOfTheWeek" EntityType="Self.DayOfTheWeek" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="GroupStudent" EntityType="Self.GroupStudent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Records" EntityType="Self.Records" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserGS" EntityType="Self.UserGS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRecords" EntityType="Self.UserRecords" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserSchedule" EntityType="Self.UserSchedule" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_GroupStudent_Group" Association="Self.FK_GroupStudent_Group">
-            <End Role="Group" EntitySet="Group" />
-            <End Role="GroupStudent" EntitySet="GroupStudent" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GroupStudent_Student" Association="Self.FK_GroupStudent_Student">
-            <End Role="Student" EntitySet="Student" />
-            <End Role="GroupStudent" EntitySet="GroupStudent" />
-          </AssociationSet>
           <AssociationSet Name="FK_Schedule_ClassTime" Association="Self.FK_Schedule_ClassTime">
             <End Role="ClassTime" EntitySet="ClassTime" />
             <End Role="Schedule" EntitySet="Schedule" />
           </AssociationSet>
-          <AssociationSet Name="FK_Schedule_DayOfTheWeek" Association="Self.FK_Schedule_DayOfTheWeek">
+          <AssociationSet Name="FK_Schedule_DayOfTheWeek1" Association="Self.FK_Schedule_DayOfTheWeek1">
             <End Role="DayOfTheWeek" EntitySet="DayOfTheWeek" />
             <End Role="Schedule" EntitySet="Schedule" />
           </AssociationSet>
@@ -285,17 +247,25 @@
             <End Role="Group" EntitySet="Group" />
             <End Role="Schedule" EntitySet="Schedule" />
           </AssociationSet>
-          <AssociationSet Name="FK_User_Gender" Association="Self.FK_User_Gender">
+          <AssociationSet Name="FK_Schedule_Subject" Association="Self.FK_Schedule_Subject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_User" Association="Self.FK_Schedule_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Group" Association="Self.FK_Student_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Gender1" Association="Self.FK_User_Gender1">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserGS_GroupStudent" Association="Self.FK_UserGS_GroupStudent">
-            <End Role="GroupStudent" EntitySet="GroupStudent" />
-            <End Role="UserGS" EntitySet="UserGS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserGS_User" Association="Self.FK_UserGS_User">
+          <AssociationSet Name="FK_User_Post1" Association="Self.FK_User_Post1">
+            <End Role="Post" EntitySet="Post" />
             <End Role="User" EntitySet="User" />
-            <End Role="UserGS" EntitySet="UserGS" />
           </AssociationSet>
           <AssociationSet Name="FK_UserRecords_Records" Association="Self.FK_UserRecords_Records">
             <End Role="Records" EntitySet="Records" />
@@ -305,126 +275,171 @@
             <End Role="User" EntitySet="User" />
             <End Role="UserRecords" EntitySet="UserRecords" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserSchedule_Schedule" Association="Self.FK_UserSchedule_Schedule">
-            <End Role="Schedule" EntitySet="Schedule" />
-            <End Role="UserSchedule" EntitySet="UserSchedule" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserSchedule_User" Association="Self.FK_UserSchedule_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="UserSchedule" EntitySet="UserSchedule" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AcademyofITSpecialistsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AcademyofITSpecialistsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ClassTime" EntityType="AcademyofITSpecialistsModel.ClassTime" />
+          <EntitySet Name="DayOfTheWeek" EntityType="AcademyofITSpecialistsModel.DayOfTheWeek" />
+          <EntitySet Name="Gender" EntityType="AcademyofITSpecialistsModel.Gender" />
+          <EntitySet Name="Group" EntityType="AcademyofITSpecialistsModel.Group" />
+          <EntitySet Name="Post" EntityType="AcademyofITSpecialistsModel.Post" />
+          <EntitySet Name="Records" EntityType="AcademyofITSpecialistsModel.Records" />
+          <EntitySet Name="Schedule" EntityType="AcademyofITSpecialistsModel.Schedule" />
+          <EntitySet Name="Student" EntityType="AcademyofITSpecialistsModel.Student" />
+          <EntitySet Name="Subject" EntityType="AcademyofITSpecialistsModel.Subject" />
+          <EntitySet Name="User" EntityType="AcademyofITSpecialistsModel.User" />
+          <EntitySet Name="UserRecords" EntityType="AcademyofITSpecialistsModel.UserRecords" />
+          <AssociationSet Name="FK_Schedule_ClassTime" Association="AcademyofITSpecialistsModel.FK_Schedule_ClassTime">
+            <End Role="ClassTime" EntitySet="ClassTime" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_DayOfTheWeek1" Association="AcademyofITSpecialistsModel.FK_Schedule_DayOfTheWeek1">
+            <End Role="DayOfTheWeek" EntitySet="DayOfTheWeek" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Gender1" Association="AcademyofITSpecialistsModel.FK_User_Gender1">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Group" Association="AcademyofITSpecialistsModel.FK_Schedule_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Group" Association="AcademyofITSpecialistsModel.FK_Student_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Post1" Association="AcademyofITSpecialistsModel.FK_User_Post1">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRecords_Records" Association="AcademyofITSpecialistsModel.FK_UserRecords_Records">
+            <End Role="Records" EntitySet="Records" />
+            <End Role="UserRecords" EntitySet="UserRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Subject" Association="AcademyofITSpecialistsModel.FK_Schedule_Subject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_User" Association="AcademyofITSpecialistsModel.FK_Schedule_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRecords_User" Association="AcademyofITSpecialistsModel.FK_UserRecords_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserRecords" EntitySet="UserRecords" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="ClassTime">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Time" Type="Time" Nullable="false" Precision="4" />
-          <NavigationProperty Name="Schedule" Relationship="Self.FK_Schedule_ClassTime" FromRole="ClassTime" ToRole="Schedule" />
+          <Property Name="Hour" Type="Int32" Nullable="false" />
+          <Property Name="Minutes" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Schedule" Relationship="AcademyofITSpecialistsModel.FK_Schedule_ClassTime" FromRole="ClassTime" ToRole="Schedule" />
         </EntityType>
         <EntityType Name="DayOfTheWeek">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Schedule" Relationship="Self.FK_Schedule_DayOfTheWeek" FromRole="DayOfTheWeek" ToRole="Schedule" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Schedule" Relationship="AcademyofITSpecialistsModel.FK_Schedule_DayOfTheWeek1" FromRole="DayOfTheWeek" ToRole="Schedule" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Self.FK_User_Gender" FromRole="Gender" ToRole="User" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="AcademyofITSpecialistsModel.FK_User_Gender1" FromRole="Gender" ToRole="User" />
         </EntityType>
         <EntityType Name="Group">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="GroupStudent" Relationship="Self.FK_GroupStudent_Group" FromRole="Group" ToRole="GroupStudent" />
-          <NavigationProperty Name="Schedule" Relationship="Self.FK_Schedule_Group" FromRole="Group" ToRole="Schedule" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Schedule" Relationship="AcademyofITSpecialistsModel.FK_Schedule_Group" FromRole="Group" ToRole="Schedule" />
+          <NavigationProperty Name="Student" Relationship="AcademyofITSpecialistsModel.FK_Student_Group" FromRole="Group" ToRole="Student" />
         </EntityType>
-        <EntityType Name="GroupStudent">
+        <EntityType Name="Post">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdGroup" Type="Int32" Nullable="false" />
-          <Property Name="IdStudent" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Group" Relationship="Self.FK_GroupStudent_Group" FromRole="GroupStudent" ToRole="Group" />
-          <NavigationProperty Name="Student" Relationship="Self.FK_GroupStudent_Student" FromRole="GroupStudent" ToRole="Student" />
-          <NavigationProperty Name="UserGS" Relationship="Self.FK_UserGS_GroupStudent" FromRole="GroupStudent" ToRole="UserGS" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="AcademyofITSpecialistsModel.FK_User_Post1" FromRole="Post" ToRole="User" />
         </EntityType>
         <EntityType Name="Records">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Heading" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="UserRecords" Relationship="Self.FK_UserRecords_Records" FromRole="Records" ToRole="UserRecords" />
+          <Property Name="Heading" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserRecords" Relationship="AcademyofITSpecialistsModel.FK_UserRecords_Records" FromRole="Records" ToRole="UserRecords" />
         </EntityType>
         <EntityType Name="Schedule">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdDayOfTheWeek" Type="Int32" Nullable="false" />
           <Property Name="IdTime" Type="Int32" Nullable="false" />
-          <Property Name="IdWeek" Type="Int32" Nullable="false" />
           <Property Name="IdGroup" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ClassTime" Relationship="Self.FK_Schedule_ClassTime" FromRole="Schedule" ToRole="ClassTime" />
-          <NavigationProperty Name="DayOfTheWeek" Relationship="Self.FK_Schedule_DayOfTheWeek" FromRole="Schedule" ToRole="DayOfTheWeek" />
-          <NavigationProperty Name="Group" Relationship="Self.FK_Schedule_Group" FromRole="Schedule" ToRole="Group" />
-          <NavigationProperty Name="UserSchedule" Relationship="Self.FK_UserSchedule_Schedule" FromRole="Schedule" ToRole="UserSchedule" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="IdSubject" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ClassTime" Relationship="AcademyofITSpecialistsModel.FK_Schedule_ClassTime" FromRole="Schedule" ToRole="ClassTime" />
+          <NavigationProperty Name="DayOfTheWeek" Relationship="AcademyofITSpecialistsModel.FK_Schedule_DayOfTheWeek1" FromRole="Schedule" ToRole="DayOfTheWeek" />
+          <NavigationProperty Name="Group" Relationship="AcademyofITSpecialistsModel.FK_Schedule_Group" FromRole="Schedule" ToRole="Group" />
+          <NavigationProperty Name="Subject" Relationship="AcademyofITSpecialistsModel.FK_Schedule_Subject" FromRole="Schedule" ToRole="Subject" />
+          <NavigationProperty Name="User" Relationship="AcademyofITSpecialistsModel.FK_Schedule_User" FromRole="Schedule" ToRole="User" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="MiddleName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="GroupStudent" Relationship="Self.FK_GroupStudent_Student" FromRole="Student" ToRole="GroupStudent" />
+          <Property Name="IdGroup" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Group" Relationship="AcademyofITSpecialistsModel.FK_Student_Group" FromRole="Student" ToRole="Group" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Schedule" Relationship="AcademyofITSpecialistsModel.FK_Schedule_Subject" FromRole="Subject" ToRole="Schedule" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FistName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Photo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdPost" Type="Int32" Nullable="false" />
           <Property Name="IdGender" Type="Int32" Nullable="false" />
           <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="NumberPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Gender" Relationship="Self.FK_User_Gender" FromRole="User" ToRole="Gender" />
-          <NavigationProperty Name="UserGS" Relationship="Self.FK_UserGS_User" FromRole="User" ToRole="UserGS" />
-          <NavigationProperty Name="UserRecords" Relationship="Self.FK_UserRecords_User" FromRole="User" ToRole="UserRecords" />
-          <NavigationProperty Name="UserSchedule" Relationship="Self.FK_UserSchedule_User" FromRole="User" ToRole="UserSchedule" />
-        </EntityType>
-        <EntityType Name="UserGS">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdUser" Type="Int32" Nullable="false" />
-          <Property Name="IdGS" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="GroupStudent" Relationship="Self.FK_UserGS_GroupStudent" FromRole="UserGS" ToRole="GroupStudent" />
-          <NavigationProperty Name="User" Relationship="Self.FK_UserGS_User" FromRole="UserGS" ToRole="User" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NumberPhone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Gender" Relationship="AcademyofITSpecialistsModel.FK_User_Gender1" FromRole="User" ToRole="Gender" />
+          <NavigationProperty Name="Post" Relationship="AcademyofITSpecialistsModel.FK_User_Post1" FromRole="User" ToRole="Post" />
+          <NavigationProperty Name="Schedule" Relationship="AcademyofITSpecialistsModel.FK_Schedule_User" FromRole="User" ToRole="Schedule" />
+          <NavigationProperty Name="UserRecords" Relationship="AcademyofITSpecialistsModel.FK_UserRecords_User" FromRole="User" ToRole="UserRecords" />
         </EntityType>
         <EntityType Name="UserRecords">
           <Key>
@@ -433,22 +448,12 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdUser" Type="Int32" Nullable="false" />
           <Property Name="IdRecords" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Records" Relationship="Self.FK_UserRecords_Records" FromRole="UserRecords" ToRole="Records" />
-          <NavigationProperty Name="User" Relationship="Self.FK_UserRecords_User" FromRole="UserRecords" ToRole="User" />
-        </EntityType>
-        <EntityType Name="UserSchedule">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdUser" Type="Int32" Nullable="false" />
-          <Property Name="IdSchedule" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Schedule" Relationship="Self.FK_UserSchedule_Schedule" FromRole="UserSchedule" ToRole="Schedule" />
-          <NavigationProperty Name="User" Relationship="Self.FK_UserSchedule_User" FromRole="UserSchedule" ToRole="User" />
+          <NavigationProperty Name="Records" Relationship="AcademyofITSpecialistsModel.FK_UserRecords_Records" FromRole="UserRecords" ToRole="Records" />
+          <NavigationProperty Name="User" Relationship="AcademyofITSpecialistsModel.FK_UserRecords_User" FromRole="UserRecords" ToRole="User" />
         </EntityType>
         <Association Name="FK_Schedule_ClassTime">
-          <End Role="ClassTime" Type="Self.ClassTime" Multiplicity="1" />
-          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <End Type="AcademyofITSpecialistsModel.ClassTime" Role="ClassTime" Multiplicity="1" />
+          <End Type="AcademyofITSpecialistsModel.Schedule" Role="Schedule" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ClassTime">
               <PropertyRef Name="Id" />
@@ -458,21 +463,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Schedule_DayOfTheWeek">
-          <End Role="DayOfTheWeek" Type="Self.DayOfTheWeek" Multiplicity="1" />
-          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+        <Association Name="FK_Schedule_DayOfTheWeek1">
+          <End Type="AcademyofITSpecialistsModel.DayOfTheWeek" Role="DayOfTheWeek" Multiplicity="1" />
+          <End Type="AcademyofITSpecialistsModel.Schedule" Role="Schedule" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DayOfTheWeek">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Schedule">
-              <PropertyRef Name="IdWeek" />
+              <PropertyRef Name="IdDayOfTheWeek" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_Gender">
-          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
+        <Association Name="FK_User_Gender1">
+          <End Type="AcademyofITSpecialistsModel.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="AcademyofITSpecialistsModel.User" Role="User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Gender">
               <PropertyRef Name="Id" />
@@ -482,21 +487,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_GroupStudent_Group">
-          <End Role="Group" Type="Self.Group" Multiplicity="1" />
-          <End Role="GroupStudent" Type="Self.GroupStudent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Group">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="GroupStudent">
-              <PropertyRef Name="IdGroup" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Schedule_Group">
-          <End Role="Group" Type="Self.Group" Multiplicity="1" />
-          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <End Type="AcademyofITSpecialistsModel.Group" Role="Group" Multiplicity="1" />
+          <End Type="AcademyofITSpecialistsModel.Schedule" Role="Schedule" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Group">
               <PropertyRef Name="Id" />
@@ -506,33 +499,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_GroupStudent_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="1" />
-          <End Role="GroupStudent" Type="Self.GroupStudent" Multiplicity="*" />
+        <Association Name="FK_Student_Group">
+          <End Type="AcademyofITSpecialistsModel.Group" Role="Group" Multiplicity="1" />
+          <End Type="AcademyofITSpecialistsModel.Student" Role="Student" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Student">
+            <Principal Role="Group">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="GroupStudent">
-              <PropertyRef Name="IdStudent" />
+            <Dependent Role="Student">
+              <PropertyRef Name="IdGroup" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserGS_GroupStudent">
-          <End Role="GroupStudent" Type="Self.GroupStudent" Multiplicity="1" />
-          <End Role="UserGS" Type="Self.UserGS" Multiplicity="*" />
+        <Association Name="FK_User_Post1">
+          <End Type="AcademyofITSpecialistsModel.Post" Role="Post" Multiplicity="1" />
+          <End Type="AcademyofITSpecialistsModel.User" Role="User" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="GroupStudent">
+            <Principal Role="Post">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="UserGS">
-              <PropertyRef Name="IdGS" />
+            <Dependent Role="User">
+              <PropertyRef Name="IdPost" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserRecords_Records">
-          <End Role="Records" Type="Self.Records" Multiplicity="1" />
-          <End Role="UserRecords" Type="Self.UserRecords" Multiplicity="*" />
+          <End Type="AcademyofITSpecialistsModel.Records" Role="Records" Multiplicity="1" />
+          <End Type="AcademyofITSpecialistsModel.UserRecords" Role="UserRecords" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Records">
               <PropertyRef Name="Id" />
@@ -542,33 +535,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserSchedule_Schedule">
-          <End Role="Schedule" Type="Self.Schedule" Multiplicity="1" />
-          <End Role="UserSchedule" Type="Self.UserSchedule" Multiplicity="*" />
+        <Association Name="FK_Schedule_Subject">
+          <End Type="AcademyofITSpecialistsModel.Subject" Role="Subject" Multiplicity="1" />
+          <End Type="AcademyofITSpecialistsModel.Schedule" Role="Schedule" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Schedule">
+            <Principal Role="Subject">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="UserSchedule">
-              <PropertyRef Name="IdSchedule" />
+            <Dependent Role="Schedule">
+              <PropertyRef Name="IdSubject" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserGS_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="UserGS" Type="Self.UserGS" Multiplicity="*" />
+        <Association Name="FK_Schedule_User">
+          <End Type="AcademyofITSpecialistsModel.User" Role="User" Multiplicity="1" />
+          <End Type="AcademyofITSpecialistsModel.Schedule" Role="Schedule" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="UserGS">
+            <Dependent Role="Schedule">
               <PropertyRef Name="IdUser" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserRecords_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="UserRecords" Type="Self.UserRecords" Multiplicity="*" />
+          <End Type="AcademyofITSpecialistsModel.User" Role="User" Multiplicity="1" />
+          <End Type="AcademyofITSpecialistsModel.UserRecords" Role="UserRecords" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -578,81 +571,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserSchedule_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="UserSchedule" Type="Self.UserSchedule" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserSchedule">
-              <PropertyRef Name="IdUser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="AcademyofITSpecialistsEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="ClassTime" EntityType="Self.ClassTime" />
-          <EntitySet Name="DayOfTheWeek" EntityType="Self.DayOfTheWeek" />
-          <EntitySet Name="Gender" EntityType="Self.Gender" />
-          <EntitySet Name="Group" EntityType="Self.Group" />
-          <EntitySet Name="GroupStudent" EntityType="Self.GroupStudent" />
-          <EntitySet Name="Records" EntityType="Self.Records" />
-          <EntitySet Name="Schedule" EntityType="Self.Schedule" />
-          <EntitySet Name="Student" EntityType="Self.Student" />
-          <EntitySet Name="User" EntityType="Self.User" />
-          <EntitySet Name="UserGS" EntityType="Self.UserGS" />
-          <EntitySet Name="UserRecords" EntityType="Self.UserRecords" />
-          <EntitySet Name="UserSchedule" EntityType="Self.UserSchedule" />
-          <AssociationSet Name="FK_Schedule_ClassTime" Association="Self.FK_Schedule_ClassTime">
-            <End Role="ClassTime" EntitySet="ClassTime" />
-            <End Role="Schedule" EntitySet="Schedule" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Schedule_DayOfTheWeek" Association="Self.FK_Schedule_DayOfTheWeek">
-            <End Role="DayOfTheWeek" EntitySet="DayOfTheWeek" />
-            <End Role="Schedule" EntitySet="Schedule" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Gender" Association="Self.FK_User_Gender">
-            <End Role="Gender" EntitySet="Gender" />
-            <End Role="User" EntitySet="User" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GroupStudent_Group" Association="Self.FK_GroupStudent_Group">
-            <End Role="Group" EntitySet="Group" />
-            <End Role="GroupStudent" EntitySet="GroupStudent" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Schedule_Group" Association="Self.FK_Schedule_Group">
-            <End Role="Group" EntitySet="Group" />
-            <End Role="Schedule" EntitySet="Schedule" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GroupStudent_Student" Association="Self.FK_GroupStudent_Student">
-            <End Role="Student" EntitySet="Student" />
-            <End Role="GroupStudent" EntitySet="GroupStudent" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserGS_GroupStudent" Association="Self.FK_UserGS_GroupStudent">
-            <End Role="GroupStudent" EntitySet="GroupStudent" />
-            <End Role="UserGS" EntitySet="UserGS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserRecords_Records" Association="Self.FK_UserRecords_Records">
-            <End Role="Records" EntitySet="Records" />
-            <End Role="UserRecords" EntitySet="UserRecords" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserSchedule_Schedule" Association="Self.FK_UserSchedule_Schedule">
-            <End Role="Schedule" EntitySet="Schedule" />
-            <End Role="UserSchedule" EntitySet="UserSchedule" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserGS_User" Association="Self.FK_UserGS_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="UserGS" EntitySet="UserGS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserRecords_User" Association="Self.FK_UserRecords_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="UserRecords" EntitySet="UserRecords" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserSchedule_User" Association="Self.FK_UserSchedule_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="UserSchedule" EntitySet="UserSchedule" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -661,115 +580,109 @@
           <EntitySetMapping Name="ClassTime">
             <EntityTypeMapping TypeName="AcademyofITSpecialistsModel.ClassTime">
               <MappingFragment StoreEntitySet="ClassTime">
+                <ScalarProperty Name="Minutes" ColumnName="Minutes" />
+                <ScalarProperty Name="Hour" ColumnName="Hour" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Time" ColumnName="Time" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DayOfTheWeek">
             <EntityTypeMapping TypeName="AcademyofITSpecialistsModel.DayOfTheWeek">
               <MappingFragment StoreEntitySet="DayOfTheWeek">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Gender">
             <EntityTypeMapping TypeName="AcademyofITSpecialistsModel.Gender">
               <MappingFragment StoreEntitySet="Gender">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Group">
             <EntityTypeMapping TypeName="AcademyofITSpecialistsModel.Group">
               <MappingFragment StoreEntitySet="Group">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="GroupStudent">
-            <EntityTypeMapping TypeName="AcademyofITSpecialistsModel.GroupStudent">
-              <MappingFragment StoreEntitySet="GroupStudent">
+          <EntitySetMapping Name="Post">
+            <EntityTypeMapping TypeName="AcademyofITSpecialistsModel.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdGroup" ColumnName="IdGroup" />
-                <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Records">
             <EntityTypeMapping TypeName="AcademyofITSpecialistsModel.Records">
               <MappingFragment StoreEntitySet="Records">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Heading" ColumnName="Heading" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Heading" ColumnName="Heading" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Schedule">
             <EntityTypeMapping TypeName="AcademyofITSpecialistsModel.Schedule">
               <MappingFragment StoreEntitySet="Schedule">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdTime" ColumnName="IdTime" />
-                <ScalarProperty Name="IdWeek" ColumnName="IdWeek" />
+                <ScalarProperty Name="IdSubject" ColumnName="IdSubject" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="IdGroup" ColumnName="IdGroup" />
+                <ScalarProperty Name="IdTime" ColumnName="IdTime" />
+                <ScalarProperty Name="IdDayOfTheWeek" ColumnName="IdDayOfTheWeek" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Student">
             <EntityTypeMapping TypeName="AcademyofITSpecialistsModel.Student">
               <MappingFragment StoreEntitySet="Student">
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdGroup" ColumnName="IdGroup" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subject">
+            <EntityTypeMapping TypeName="AcademyofITSpecialistsModel.Subject">
+              <MappingFragment StoreEntitySet="Subject">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="AcademyofITSpecialistsModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FistName" ColumnName="FistName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="Photo" ColumnName="Photo" />
-                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
-                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="NumberPhone" ColumnName="NumberPhone" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserGS">
-            <EntityTypeMapping TypeName="AcademyofITSpecialistsModel.UserGS">
-              <MappingFragment StoreEntitySet="UserGS">
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="NumberPhone" ColumnName="NumberPhone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="IdPost" ColumnName="IdPost" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-                <ScalarProperty Name="IdGS" ColumnName="IdGS" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserRecords">
             <EntityTypeMapping TypeName="AcademyofITSpecialistsModel.UserRecords">
               <MappingFragment StoreEntitySet="UserRecords">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="IdRecords" ColumnName="IdRecords" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserSchedule">
-            <EntityTypeMapping TypeName="AcademyofITSpecialistsModel.UserSchedule">
-              <MappingFragment StoreEntitySet="UserSchedule">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-                <ScalarProperty Name="IdSchedule" ColumnName="IdSchedule" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

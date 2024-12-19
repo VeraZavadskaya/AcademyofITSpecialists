@@ -12,13 +12,18 @@ namespace AcademyofITSpecialists.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class UserGS
+    public partial class Post
     {
-        public int Id { get; set; }
-        public int IdUser { get; set; }
-        public int IdGS { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Post()
+        {
+            this.User = new HashSet<User>();
+        }
     
-        public virtual GroupStudent GroupStudent { get; set; }
-        public virtual User User { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> User { get; set; }
     }
 }

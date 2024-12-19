@@ -23,24 +23,42 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="400" />
                 </Grid.ColumnDefinitions>
 
-                <Button Name="AddScheduleBtn" Click="AddScheduleBtn_Click"/>
-                <Image Source="\Resources\Image\addRecords.png" Width="30" Height="30"/>
-                <TextBox Name="SearchTb" Grid.Column="1" Margin="20 10" Text="Поиск" FontSize="40"/>
-                <Button Name="SearchBtn" Content="Найти" Grid.Column="2" FontSize="30" Width="150" HorizontalAlignment="Left" Click="SearchBtn_Click" />
-
-            </Grid>
-            <ListView Name="ScheduleLv" Grid.Row="4" Background="Black" Margin="10 0 10 0">
+                <Button Name="AddScheduleBtn" Content="+" Width="70" Height="70" Click="AddScheduleBtn_Click"/>
+                <TextBlock Text="Поиск по группе:" Grid.Column="1"/>
+                <TextBox Name="SearchTb" Grid.Column="2" Margin="20 10" FontSize="40" TextChanged="SearchTb_TextChanged"/>
+       </Grid>
+            <ListView Name="ScheduleLv" Grid.Row="4" Background="Black" Foreground="White" Margin="10 0 10 0">
                 <ListView.View>
                     <GridView>
+                        <GridViewColumn Header="День недели"
+                                        DisplayMemberBinding="{Binding DayOfTheWeek.Name}"/>
+                        <GridViewColumn Header="Час"
+                                        DisplayMemberBinding="{Binding ClassTime.Hour}"/>
+                        <GridViewColumn Header="Минуты"
+                                        DisplayMemberBinding="{Binding ClassTime.Minutes}"/>
                         <GridViewColumn Header="Группа"
-                                        DisplayMemberBinding="{Binding}"/>
-                        <GridViewColumn Header="Дата"
-                                        DisplayMemberBinding="{Binding}"/>
-                        <GridViewColumn Header="Время"
-                                        DisplayMemberBinding="{Binding}"/>
+                                        DisplayMemberBinding="{Binding Group.Name}"/>
+                        <GridViewColumn Header="Преподаватель">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0} {1} {2}">
+                                                <Binding Path="User.LastName"/>
+                                                <Binding Path="User.FirstName"/>
+                                                <Binding Path="User.MiddleName"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Предмет"
+                                        DisplayMemberBinding="{Binding Subject.Name}"/>
                     </GridView>
                 </ListView.View>
             </ListView>

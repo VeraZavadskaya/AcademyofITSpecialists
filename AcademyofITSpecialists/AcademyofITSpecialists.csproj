@@ -92,7 +92,7 @@
     <Compile Include="Model\Group.cs">
       <DependentUpon>AcademyOfITSpecialists.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\GroupStudent.cs">
+    <Compile Include="Model\Post.cs">
       <DependentUpon>AcademyOfITSpecialists.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Records.cs">
@@ -104,16 +104,13 @@
     <Compile Include="Model\Student.cs">
       <DependentUpon>AcademyOfITSpecialists.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Subject.cs">
+      <DependentUpon>AcademyOfITSpecialists.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\User.cs">
       <DependentUpon>AcademyOfITSpecialists.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\UserGS.cs">
-      <DependentUpon>AcademyOfITSpecialists.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\UserRecords.cs">
-      <DependentUpon>AcademyOfITSpecialists.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\UserSchedule.cs">
       <DependentUpon>AcademyOfITSpecialists.tt</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\GroupPage.xaml.cs">
@@ -136,6 +133,9 @@
     </Compile>
     <Compile Include="View\Windows\AddRecordWindow.xaml.cs">
       <DependentUpon>AddRecordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\AddStudentInGroup.xaml.cs">
+      <DependentUpon>AddStudentInGroup.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Windows\AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
@@ -191,6 +191,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Windows\AddRecordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windows\AddStudentInGroup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

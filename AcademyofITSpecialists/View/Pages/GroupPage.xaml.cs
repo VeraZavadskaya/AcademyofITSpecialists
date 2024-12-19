@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using AcademyofITSpecialists.Model;
+using AcademyofITSpecialists.View.Windows;
 
 namespace AcademyofITSpecialists.View.Pages
 {
@@ -21,41 +22,41 @@ namespace AcademyofITSpecialists.View.Pages
     /// </summary>
     public partial class GroupPage : Page
     {
+        List<Group> groups = App.context.Group.ToList();
         public GroupPage()
         {
             InitializeComponent();
 
+            if(App.currentUser.IdPost == 2)
+            {
+                AddStudentInGroupBtn.IsEnabled = false;
+                AddStudentInGroupBtn.Visibility = Visibility.Collapsed;
+            }
+
             InformationOfStudentsLV.ItemsSource = App.context.Student.ToList();
+
+            GroupCmb.SelectedValuePath = "Id";
+            GroupCmb.DisplayMemberPath = "Name";
+            GroupCmb.ItemsSource = App.context.Group.ToList();
         }
 
-        private void P10Btn_Click(object sender, RoutedEventArgs e)
+        private void GroupCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            Group group = GroupCmb.SelectedItem as Group;
+            if(GroupCmb.SelectedIndex == 0)
+            {
+                InformationOfStudentsLV.ItemsSource = App.context.Student.ToList();
+            }
+            else
+            {
+                InformationOfStudentsLV.ItemsSource = App.context.Student.Where(s => s.IdGroup == group.Id).ToList();
+            }
         }
 
-        private void P11Btn_Click(object sender, RoutedEventArgs e)
+        private void AddStudentInGroupBtn_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void P12Btn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void R09Btn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void R10Btn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void R11Btn_Click(object sender, RoutedEventArgs e)
-        {
-
+            AddStudentInGroup addStudentInGroup = new AddStudentInGroup();
+            addStudentInGroup.ShowDialog();
         }
     }
 }

@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="Окно регистрации урока" Height="350" Width="350"
         Background="Black"
-        Foreground="White">
+        Foreground="White"
+        WindowStartupLocation="CenterScreen">
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150" />
@@ -16,24 +17,27 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
-            <RowDefinition Height="50" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="50" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
             <RowDefinition Height="10" />
             <RowDefinition Height="50" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        <TextBlock Text="Группа:" Grid.Row="1" FontSize="20"/>
-        <TextBlock Text="День недели:" Grid.Row="3" FontSize="20"/>
-        <TextBlock Text="Время:"  Grid.Row="5" FontSize="20"/>
-        <ComboBox Name="GroupCmb" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"/>
-        <ComboBox Name="DayOfWeekCmb" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"/>
-        <TextBox Name="HourTb" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" Width="40" Height="40" Margin="5"/>
-        <TextBlock Text="Ч." Grid.Row="5" Grid.Column="1" FontSize="20" HorizontalAlignment="Right" Margin="0 0 10 0"/>
-        <TextBox Name="Minute" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left" Width="40" Height="40" Margin="5"/>
-        <TextBlock Text="мин." Grid.Row="5" Grid.Column="2" FontSize="20" HorizontalAlignment="Right"/>
-        <Button Name="SaveBtn" Content="Сохранить" Grid.Row="7" Grid.ColumnSpan="3" Width="250"/>
+        <TextBlock Text="День недели:" FontSize="20"/>
+        <TextBlock Text="Группа:" Grid.Row="2" FontSize="20"/>
+        <TextBlock Text="Время:"  Grid.Row="1" FontSize="20"/>
+        <ComboBox Name="GroupCmb" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"/>
+        <ComboBox Name="DayOfWeekCmb" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"/>
+        <TextBox Name="HourTb" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Width="40" Height="40" Margin="5"/>
+        <TextBlock Text="Ч." Grid.Row="1" Grid.Column="1" FontSize="20" HorizontalAlignment="Right" Margin="0 0 10 0"/>
+        <TextBox Name="MinuteTb" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" Width="40" Height="40" Margin="5"/>
+        <TextBlock Text="мин." Grid.Row="1" Grid.Column="2" FontSize="20" HorizontalAlignment="Right"/>
+        <TextBlock Text="Преподаватель:" Grid.Row="3" FontSize="20"/>
+        <ComboBox Name="UserCmb" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"/>
+        <TextBlock Text="Предмет:" Grid.Row="4" FontSize="20"/>
+        <ComboBox Name="SubjectCmb" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"/>
+        <Button Name="SaveBtn" Content="Сохранить" Grid.Row="7" Grid.ColumnSpan="3" Width="250" Click="SaveBtn_Click"/>
     </Grid>
 </Window>

@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AcademyofITSpecialists.AppData;
+using AcademyofITSpecialists.Model;
 
 namespace AcademyofITSpecialists.View.Windows
 {
@@ -22,6 +24,35 @@ namespace AcademyofITSpecialists.View.Windows
         public AddRecordWindow()
         {
             InitializeComponent();
+        }
+
+        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(TextTb.Text))
+            {
+                MessageBoxHelper.Warning("Заполните текстовое поле!");
+            }
+            else
+            {
+                Records records = new Records()
+                {
+                    Heading = HeadingTb.Text,
+                    Text = TextTb.Text
+                };
+
+                App.context.Records.Add(records);
+                App.context.SaveChanges();
+                MessageBoxHelper.Information("Запись успешно добавлена!");
+            }
+            
+            HeadingTb.Text = "";
+            TextTb.Text = "";
+            Close();
+        }
+
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

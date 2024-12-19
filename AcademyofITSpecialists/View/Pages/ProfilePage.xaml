@@ -41,13 +41,13 @@
                 <ImageBrush  ImageSource="/Resources/Icon/profile.png"/>
             </Ellipse.Fill>
         </Ellipse>
-        <TextBox Name="LastNameTb" Text="{Binding LastName}"  FontSize="30" Grid.Column="1" Grid.Row="4"/>
-        <TextBox Name="FirstNameTb" Text="{Binding FirstName}" FontSize="30" Grid.Column="1" Grid.Row="6"/>
-        <TextBox Name="MiddleNameTb" Text="{Binding MiddleName}" FontSize="30" Grid.Column="1" Grid.Row="8"/>
+        <TextBox Name="LastNameTb" Text="{Binding User.LastName}"  FontSize="30" Grid.Column="1" Grid.Row="4"/>
+        <TextBox Name="FirstNameTb" Text="{Binding User.FirstName}" FontSize="30" Grid.Column="1" Grid.Row="6"/>
+        <TextBox Name="MiddleNameTb" Text="{Binding User.MiddleName}" FontSize="30" Grid.Column="1" Grid.Row="8"/>
         <TextBox Name="GenderTb" Text="{Binding User.Genger.Name}"  FontSize="30" Grid.Column="1" Grid.Row="10"/>
-        <TextBox Name="BirthdayTb" Text="{Binding Birthday}" Grid.Column="1" Grid.Row="12" FontSize="30"/>
-        <TextBox Name="EmailTb" Text="{Binding Email}" Grid.Column="1" Grid.Row="14" FontSize="30"/>
-        <TextBox Name="PhoneTb" Text="{Binding NumberPhone}" Grid.Column="1" Grid.Row="16" FontSize="30"/>
+        <TextBox Name="BirthdayTb" Text="{Binding User.Birthday}" Grid.Column="1" Grid.Row="12" FontSize="30"/>
+        <TextBox Name="EmailTb" Text="{Binding User.Email}" Grid.Column="1" Grid.Row="14" FontSize="30"/>
+        <TextBox Name="PhoneTb" Text="{Binding User.NumberPhone}" Grid.Column="1" Grid.Row="16" FontSize="30"/>
 
         <TextBlock Text="Фамилия" Grid.Row="4"  FontSize="25"/>
         <TextBlock Text="Имя" Grid.Row="6" FontSize="25"/>
