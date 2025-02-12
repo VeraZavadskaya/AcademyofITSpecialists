@@ -33,30 +33,47 @@ namespace AcademyofITSpecialists.View.Pages
                 AddStudentInGroupBtn.Visibility = Visibility.Collapsed;
             }
 
-            InformationOfStudentsLV.ItemsSource = App.context.Student.ToList();
+            InformationOfStudentsLb.ItemsSource = App.context.Student.ToList();
 
-            GroupCmb.SelectedValuePath = "Id";
-            GroupCmb.DisplayMemberPath = "Name";
-            GroupCmb.ItemsSource = App.context.Group.ToList();
+            //GroupCmb.SelectedValuePath = "Id";
+            //GroupCmb.DisplayMemberPath = "Name";
+            //GroupCmb.ItemsSource = App.context.Group.ToList();
         }
 
-        private void GroupCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Group group = GroupCmb.SelectedItem as Group;
-            if(GroupCmb.SelectedIndex == 0)
-            {
-                InformationOfStudentsLV.ItemsSource = App.context.Student.ToList();
-            }
-            else
-            {
-                InformationOfStudentsLV.ItemsSource = App.context.Student.Where(s => s.IdGroup == group.Id).ToList();
-            }
-        }
+        //private void GroupCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    Group group = GroupCmb.SelectedItem as Group;
+        //    if(GroupCmb.SelectedIndex == 0)
+        //    {
+        //        InformationOfStudentsLb.ItemsSource = App.context.Student.ToList();
+        //    }
+        //    else
+        //    {
+        //        InformationOfStudentsLb.ItemsSource = App.context.Student.Where(s => s.IdGroup == group.Id).ToList();
+        //    }
+        //}
 
         private void AddStudentInGroupBtn_Click(object sender, RoutedEventArgs e)
         {
             AddStudentInGroup addStudentInGroup = new AddStudentInGroup();
             addStudentInGroup.ShowDialog();
+        }
+
+        private void InformationOfStudentsLb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+        private void SudentTb_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            
+            if (SudentTb.Text != string.Empty)
+            {
+                InformationOfStudentsLb.ItemsSource = App.context.Student.Where(s => s.LastName.ToLower().Contains(SudentTb.Text.ToLower())).ToList();
+            }
+            else
+            {
+                InformationOfStudentsLb.ItemsSource = App.context.Student.ToList();
+            }
         }
     }
 }

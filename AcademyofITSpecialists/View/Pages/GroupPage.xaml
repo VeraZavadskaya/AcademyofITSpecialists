@@ -25,12 +25,52 @@
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
                 <Button Name="AddStudentInGroupBtn" Content="+" Width="70" Height="70" HorizontalAlignment="Left" Click="AddStudentInGroupBtn_Click"/>
-                <TextBlock Text="Группа" HorizontalAlignment="Right"/>
-                <ComboBox Name="GroupCmb" Grid.Column="1" Width="250" Height="60" SelectionChanged="GroupCmb_SelectionChanged"/>
+                <TextBlock Text="ФИО студента" HorizontalAlignment="Right"/>
+                <TextBox Name="SudentTb" Grid.Column="1" Width="250" Height="60" SelectionChanged="SudentTb_SelectionChanged"/>
             </Grid>
             
         </Border>
-        
+        <ListBox Name="InformationOfStudentsLb" Grid.Row="3" Background="Black" Foreground="White" SelectionChanged="InformationOfStudentsLb_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="1" BorderBrush="White" Padding="15" Width="400" Height="auto" Margin="5">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="5" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="5" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="5" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Группа:" FontSize="25"/>
+                            <TextBlock Text="ФИО:" Grid.Row="2" FontSize="25"/>
+                            <TextBlock Text="Дата рождения:" Grid.Row="4" FontSize="25"/>
+                            <TextBlock Text="{Binding Group.Name}" Grid.Column="2" FontSize="25"/>
+                            <TextBlock Grid.Column="3" Grid.Row="2" FontSize="25">
+                                <TextBlock.Text >
+                                    <MultiBinding StringFormat="{}{0} {1} {2}">
+                                        <Binding Path="LastName"/>
+                                        <Binding Path="FirstName"/>
+                                        <Binding Path="MiddleName"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <TextBlock Text="{Binding Birthday, StringFormat=dd.MM.yyyy}" Grid.Column="2" Grid.Row="4" FontSize="25"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <!--<ListView Name="InformationOfStudentsLV" Grid.Row="3" Background="Black" Foreground="White">
             <ListView.View>
                 <GridView>
