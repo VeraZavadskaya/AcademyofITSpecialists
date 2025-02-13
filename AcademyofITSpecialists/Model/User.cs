@@ -31,7 +31,6 @@ namespace AcademyofITSpecialists.Model
         public System.DateTime Birthday { get; set; }
         public string Email { get; set; }
         public string NumberPhone { get; set; }
-        public string Login { get; set; }
         public string Password { get; set; }
     
         public virtual Gender Gender { get; set; }

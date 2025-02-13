@@ -34,24 +34,7 @@ namespace AcademyofITSpecialists.View.Pages
             }
 
             InformationOfStudentsLb.ItemsSource = App.context.Student.ToList();
-
-            //GroupCmb.SelectedValuePath = "Id";
-            //GroupCmb.DisplayMemberPath = "Name";
-            //GroupCmb.ItemsSource = App.context.Group.ToList();
         }
-
-        //private void GroupCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    Group group = GroupCmb.SelectedItem as Group;
-        //    if(GroupCmb.SelectedIndex == 0)
-        //    {
-        //        InformationOfStudentsLb.ItemsSource = App.context.Student.ToList();
-        //    }
-        //    else
-        //    {
-        //        InformationOfStudentsLb.ItemsSource = App.context.Student.Where(s => s.IdGroup == group.Id).ToList();
-        //    }
-        //}
 
         private void AddStudentInGroupBtn_Click(object sender, RoutedEventArgs e)
         {

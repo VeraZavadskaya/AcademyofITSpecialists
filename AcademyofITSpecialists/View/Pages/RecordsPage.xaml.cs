@@ -25,12 +25,6 @@ namespace AcademyofITSpecialists.View.Pages
         {
             InitializeComponent();
 
-            if (App.currentUser.IdPost == 2)
-            {
-                AddRecordsBtn.IsEnabled = false;
-                AddRecordsBtn.Visibility = Visibility.Collapsed;
-            }
-
             RecordsLb.ItemsSource = App.context.Records.ToList();
         }
 

@@ -77,7 +77,7 @@ namespace AcademyofITSpecialists.View.Windows
             {
                 MessageBoxHelper.Error("Введите логин или пароль!");
             }
-            User newUser = App.context.User.FirstOrDefault(user => user.Login == LoginTb.Text && user.Password == PasswordPb.Password);
+            User newUser = App.context.User.FirstOrDefault(user => user.Email == LoginTb.Text && user.Password == PasswordPb.Password);
 
             if(newUser != null)
             {

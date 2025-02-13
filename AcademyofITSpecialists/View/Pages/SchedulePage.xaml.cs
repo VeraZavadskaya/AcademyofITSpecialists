@@ -36,7 +36,6 @@ namespace AcademyofITSpecialists.View.Pages
             ScheduleLv.ItemsSource = App.context.Schedule.ToList();
         }
 
-
         private void AddScheduleBtn_Click(object sender, RoutedEventArgs e)
         {
             AddGroupInSchedule addGroupInSchedule = new AddGroupInSchedule();

@@ -5,17 +5,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1f5c5dd7fcbd4bf9bcdafa9c87359c46" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.ClassTime" Width="1.5" PointX="0.75" PointY="7" />
-        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.DayOfTheWeek" Width="1.5" PointX="0.75" PointY="19.5" />
-        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.Gender" Width="1.5" PointX="1.5" PointY="14.625" />
-        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.Group" Width="1.5" PointX="0.75" PointY="3.625" />
-        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.Post" Width="1.5" PointX="1.5" PointY="17" />
-        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.Records" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.Schedule" Width="1.5" PointX="3" PointY="3" />
-        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.Student" Width="1.5" PointX="3" PointY="7.25" />
-        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.Subject" Width="1.5" PointX="0.75" PointY="21.75" />
-        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.User" Width="1.5" PointX="0.75" PointY="9.625" />
-        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.UserRecords" Width="1.5" PointX="3" PointY="10.625" />
+        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.ClassTime" Width="1.5" PointX="3.75" PointY="16" />
+        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.DayOfTheWeek" Width="1.5" PointX="3.75" PointY="9" />
+        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.Gender" Width="1.5" PointX="1.5" PointY="13.625" />
+        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.Group" Width="1.5" PointX="0.75" PointY="3.375" />
+        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.Post" Width="1.5" PointX="1.5" PointY="11.25" />
+        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.Records" Width="1.5" PointX="3.75" PointY="19.375" />
+        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.Schedule" Width="1.5" PointX="6" PointY="2.75" />
+        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.Student" Width="1.5" PointX="3" PointY="3.125" />
+        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.Subject" Width="1.5" PointX="3.75" PointY="6.625" />
+        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.User" Width="1.5" PointX="3.75" PointY="11.375" />
+        <EntityTypeShape EntityType="AcademyofITSpecialistsModel.UserRecords" Width="1.5" PointX="6" PointY="12.25" />
         <AssociationConnector Association="AcademyofITSpecialistsModel.FK_Schedule_ClassTime" />
         <AssociationConnector Association="AcademyofITSpecialistsModel.FK_Schedule_DayOfTheWeek1" />
         <AssociationConnector Association="AcademyofITSpecialistsModel.FK_User_Gender1" />

@@ -92,7 +92,6 @@
           <Property Name="Birthday" Type="date" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="NumberPhone" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="UserRecords">
@@ -434,7 +433,6 @@
           <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="NumberPhone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Gender" Relationship="AcademyofITSpecialistsModel.FK_User_Gender1" FromRole="User" ToRole="Gender" />
           <NavigationProperty Name="Post" Relationship="AcademyofITSpecialistsModel.FK_User_Post1" FromRole="User" ToRole="Post" />
@@ -663,7 +661,6 @@
             <EntityTypeMapping TypeName="AcademyofITSpecialistsModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="NumberPhone" ColumnName="NumberPhone" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Birthday" ColumnName="Birthday" />
